@@ -18,8 +18,8 @@ app.get("/api/v1/products",(req,res)=>{
             message: "Product fetched successfully",
             data: { 
 
-                product: products
-            }
+                product: products, products
+            },
         })                     
     }
     else
