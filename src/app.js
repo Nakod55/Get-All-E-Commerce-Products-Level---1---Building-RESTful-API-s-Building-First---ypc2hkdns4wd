@@ -11,14 +11,24 @@ app.use(express.json());
 // Write GET endpoint for sending all the products to client here
 // Endpoint - /api/v1/products
 app.get("/api/v1/products",(req,res)=>{
-     res.send({
-        status: "success",
-        message: "Product fetched successfully",
-        data: { 
+    if(products)
+    {
+        res.send({
+            status: "success",
+            message: "Product fetched successfully",
+            data: { 
 
-            product: products
-        }
-     })                     
+                product: products
+            }
+        })                     
+    }
+    else
+    {
+        res.status(404);
+        res.send({
+            message: "Product not found"
+        })
+    }    
 })
 
 module.exports = app;
