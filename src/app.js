@@ -3,14 +3,13 @@ const express = require("express");
 const app = express();
 
 // Importing products from products.json file
-const products = JSON.parse(fs.readFileSync(`${__dirname}/data/products.json`));
+const products = JSON.parse(fs.readFileSync(`${__dirname}/data/products.json`))||[];
 
 // Middlewares
 app.use(express.json());
 
 // Write GET endpoint for sending all the products to client here
 // Endpoint - /api/v1/products
-let str = products.map(obj => JSON.stringify(obj)).join(',');
 app.get("/api/v1/products",(req,res)=>{
     if(products)
     {
@@ -19,7 +18,7 @@ app.get("/api/v1/products",(req,res)=>{
             message: "Product fetched successfully",
             data: { 
 
-                product: str
+                product: products
             }
         })                     
     }
